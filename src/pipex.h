@@ -8,8 +8,8 @@
 # include <stdio.h>
 #include <sys/wait.h>
 
-void	child_process(char **argv, int *pipefd, char **envp);
-void	parent_process(char **argv, int *pipefd, char **envp);
+void	child_process(char **argv, int *fd, char **envp);
+void	parent_process(char **argv, int *fd, char **envp);
 void	execute_command(char *cmd, char **envp);
 char	*get_command_path(char *cmd, char **envp);
 int		open_infile(char *file);

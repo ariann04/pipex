@@ -26,32 +26,6 @@ int	open_outfile(char *file)
 	return (fd);
 }
 
-void	execute_command(char *cmd, char **envp)
-{
-	char	**args;
-	char	*path;
-
-	args = ft_split(cmd, ' ');
-	if (!args || !args[0])
-	{
-		ft_putstr_fd("pipex: comando vacío\n", 2);
-		exit(EXIT_FAILURE);
-	}
-	path = get_command_path(args[0], envp);
-	if (!path)
-	{
-		ft_putstr_fd("pipex: command not found: ", 2);
-		ft_putendl_fd(args[0], 2);
-		ft_free_tab(args);
-		exit(EXIT_FAILURE);
-	}
-	execve(path, args, envp);
-	perror("pipex: execve");
-	ft_free_tab(args);
-	free(path);
-	exit(EXIT_FAILURE);
-}
-
 char	*get_command_path(char *cmd, char **envp)
 {
 	int		i;
